@@ -17,8 +17,6 @@ jobs:
       fail-fast: false
       matrix:
         build:
-          # Linux
-          - { name: 'Otter Order Printer Bridge', platform: 'linux/amd64',   os: 'ubuntu-latest', artifact: 'linux-amd64' }
           # Windows
           - { name: 'Otter Order Printer Bridge', platform: 'windows/amd64', os: 'windows-latest', artifact: 'windows-amd64' }
           # macOS Intel
