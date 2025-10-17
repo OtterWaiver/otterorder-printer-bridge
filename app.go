@@ -19,13 +19,26 @@ func NewApp() *App {
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 
-	a.prefs, _ = internal.NewPrefsStore("otter-order-printer-bridge")
-	a.printerServer = internal.NewPrinterServer(a.prefs)
-	fmt.Println(a.prefs.Path)
-
-	if err := a.printerServer.StartWithContext(a.ctx); err != nil {
-		fmt.Println("Error starting printer server:", err)
+	prefs, err := internal.NewPrefsStore("otter-order-printer-bridge")
+	if err != nil {
+		fmt.Println("prefs init error:", err)
+		// optionally show a dialog or keep running headless
+		return
 	}
+	a.prefs = prefs
+
+	a.printerServer = internal.NewPrinterServer(a.prefs)
+
+	go func() {
+		defer func() {
+			if r := recover(); r != nil {
+				fmt.Println("printer server panic:", r)
+			}
+		}()
+		if err := a.printerServer.StartWithContext(ctx); err != nil {
+			fmt.Println("server error:", err)
+		}
+	}()
 
 	fmt.Println("Printer server started on port 3838")
 }
