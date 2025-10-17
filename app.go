@@ -23,6 +23,10 @@ func (a *App) startup(ctx context.Context) {
 	a.printerServer = internal.NewPrinterServer(a.prefs)
 	fmt.Println(a.prefs.Path)
 
+	if err := a.printerServer.StartWithContext(a.ctx); err != nil {
+		fmt.Println("Error starting printer server:", err)
+	}
+
 	fmt.Println("Printer server started on port 3838")
 }
 
