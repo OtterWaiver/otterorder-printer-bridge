@@ -36,7 +36,7 @@ jobs:
 
       # Build with the Wails action (we disable its own "package to release" step)
       - name: Build with Wails
-        uses: dAppServer/wails-build-action@v2.2
+        uses: dAppServer/wails-build-action@v3
         with:
           build-name: ${{ matrix.build.name }}
           build-platform: ${{ matrix.build.platform }}
