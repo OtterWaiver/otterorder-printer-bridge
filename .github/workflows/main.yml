@@ -18,11 +18,11 @@ jobs:
       matrix:
         build:
           # Windows
-          - { name: 'Otter Order Printer Bridge', platform: 'windows/amd64', os: 'windows-latest', artifact: 'windows-amd64' }
+          - { name: 'OtterOrderPrinterBridge', platform: 'windows/amd64', os: 'windows-latest', artifact: 'windows-amd64' }
           # macOS Intel
-          - { name: 'Otter Order Printer Bridge', platform: 'darwin/amd64',  os: 'macos-latest',   artifact: 'macos-x86_64' }
+          - { name: 'OtterOrderPrinterBridge', platform: 'darwin/amd64',  os: 'macos-latest',   artifact: 'macos-x86_64' }
           # macOS Apple Silicon
-          - { name: 'Otter Order Printer Bridge', platform: 'darwin/arm64',  os: 'macos-latest',   artifact: 'macos-arm64' }
+          - { name: 'OtterOrderPrinterBridge', platform: 'darwin/arm64',  os: 'macos-latest',   artifact: 'macos-arm64' }
 
     runs-on: ${{ matrix.build.os }}
 
